@@ -53,7 +53,7 @@ router.post('/', function (req, res) {
     // QUEUED, STARTED, COMPLETED, FINALIZED
 
     if (phase == "COMPLETED") {
-        ghrepo.status(sha, {
+        Config.ghrepo.status(sha, {
             "state": JenkinStatus[status].status,
             "target_url": "http://ci.mycompany.com/job/hub/3",
             "context": "Sanity Check",
