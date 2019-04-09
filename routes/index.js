@@ -68,10 +68,14 @@ router.post('/', function (req, res) {
                     console.log("Updated Github status check.")
                 });
         
+                
                 // Trigger Jenkins build.
-        
+                
                 let job_api = `${Config.jenkins_job_sanity}/buildWithParameters?token=${Config.jenkins_token}&SHA=${sha}`
-        
+                
+                console.log(sha)
+                console.log(job_api)
+
                 request(job_api, {
                     method: "POST",
                     auth: {
@@ -80,7 +84,7 @@ router.post('/', function (req, res) {
                     }
                 }, function (error, response, body) {
                     if(error){
-                        console.log(response);
+                        console.log('Error triggering Jenkins', arguments);
                     }
                 });
             }

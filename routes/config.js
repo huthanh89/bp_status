@@ -17,7 +17,7 @@ module.exports = {
     jenkins_token: 'drevil',
     jenkins_username: 'thanhuyn',
     jenkins_password: 'Xoujas123!@#',
-    jenkins_job_sanity: 'https://engci-jenkins-sjc2.cisco.com/jenkins/job/team_CA-CSR-SM-LE-SGME/job/thanh1_test/'
+    jenkins_job_sanity: 'https://engci-jenkins-sjc2.cisco.com/jenkins/job/team_CA-CSR-SM-LE-SGME/job/thanh1_test'
 };
 
 //=============================================================================//
