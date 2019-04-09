@@ -7,17 +7,11 @@ const _ = require('lodash');
 const github = require('octonode');
 const request = require('request');
 const router = express.Router();
+const Config = require('./config');
 
 //=============================================================================//
 // Variables
 //=============================================================================//
-
-const client = github.client('67f15a111c350e61ad5e5173dec2696473d168e7');
-const ghrepo = client.repo('huthanh89/practice_jenkins');
-const jenkins_token = 'myaccesstoken'
-const jenkins_username = 'thanhhuynh'
-const jenkins_password = 'huynh'
-const whitelist_branches = ['featureC']
 
 // Translate Jenkins build status to Github check status.
 

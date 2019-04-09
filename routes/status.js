@@ -6,7 +6,6 @@ const express = require('express');
 const _ = require('lodash');
 const github = require('octonode');
 const request = require('request');
-
 const router = express.Router();
 
 //=============================================================================//

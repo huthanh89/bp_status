@@ -7,16 +7,12 @@ const _ = require('lodash');
 const github = require('octonode');
 const request = require('request');
 const router = express.Router();
+const Config = require('./config');
 
 //=============================================================================//
 // Variables
 //=============================================================================//
 
-const client = github.client('67f15a111c350e61ad5e5173dec2696473d168e7');
-const ghrepo = client.repo('huthanh89/practice_jenkins');
-const jenkins_token = 'myaccesstoken'
-const jenkins_username = 'thanhhuynh'
-const jenkins_password = 'huynh'
 const whitelist_branches = ['featureC']
 
 //=============================================================================//
@@ -63,7 +59,7 @@ router.post('/', function (req, res) {
                 
                 // Update GitHub status check to pending.
 
-                ghrepo.status(sha, {
+                Config.ghrepo.status(sha, {
                     "state": "pending",
                     "target_url": "http://ci.mycompany.com/job/hub/3",
                     "context": "Sanity Check",
@@ -74,13 +70,13 @@ router.post('/', function (req, res) {
         
                 // Trigger Jenkins build.
         
-                let job_api = `http://ec2-18-206-252-202.compute-1.amazonaws.com:8080/job/practice_jenkins/buildWithParameters?token=${jenkins_token}&SHA=${sha}`
+                let job_api = `http://ec2-18-206-252-202.compute-1.amazonaws.com:8080/job/practice_jenkins/buildWithParameters?token=${Config.jenkins_token}&SHA=${sha}`
         
                 request(job_api, {
                     method: "POST",
                     auth: {
-                        user: jenkins_username,
-                        pass: jenkins_password
+                        user: Config.jenkins_username,
+                        pass: Config.jenkins_password
                     }
                 }, function (error, response, body) {
                     if(error){
