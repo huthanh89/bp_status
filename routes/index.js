@@ -13,7 +13,7 @@ const Config = require('./config');
 // Variables
 //=============================================================================//
 
-const whitelist_branches = ['featureC']
+const whitelist_branches = ['featureC', 'master']
 
 //=============================================================================//
 // GET - Homepage.
@@ -61,7 +61,7 @@ router.post('/', function (req, res) {
 
                 Config.ghrepo.status(sha, {
                     "state": "pending",
-                    "target_url": "http://ci.mycompany.com/job/hub/3",
+                    "target_url": Config.jenkins_job_sanity,
                     "context": "Sanity Check",
                     "description": "Waiting for sanity result"
                 }, function () {
@@ -70,7 +70,7 @@ router.post('/', function (req, res) {
         
                 // Trigger Jenkins build.
         
-                let job_api = `http://ec2-18-206-252-202.compute-1.amazonaws.com:8080/job/practice_jenkins/buildWithParameters?token=${Config.jenkins_token}&SHA=${sha}`
+                let job_api = `${Config.jenkins_job_sanity}/buildWithParameters?token=${Config.jenkins_token}&SHA=${sha}`
         
                 request(job_api, {
                     method: "POST",

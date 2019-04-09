@@ -55,7 +55,7 @@ router.post('/', function (req, res) {
     if (phase == "COMPLETED") {
         Config.ghrepo.status(sha, {
             "state": JenkinStatus[status].status,
-            "target_url": "http://ci.mycompany.com/job/hub/3",
+            "target_url": Config.jenkins_job_sanity,
             "context": "Sanity Check",
             "description": JenkinStatus[status].description
         }, function () {
