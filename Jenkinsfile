@@ -19,6 +19,14 @@ pipeline {
 			steps {
 			    echo "hello from sanity"
 			}
+            post {
+                success {
+                    setBuildStatus("Build succeeded", "SUCCESS");
+                }
+                failure {
+                    setBuildStatus("Build failed", "FAILURE");
+                }
+            }
 		}
 		stage ('full regression2') {
             when {
@@ -29,12 +37,4 @@ pipeline {
 			}
 		}
 	}
-    post {
-        success {
-            setBuildStatus("Build succeeded", "SUCCESS");
-        }
-        failure {
-            setBuildStatus("Build failed", "FAILURE");
-        }
-    }
 }
