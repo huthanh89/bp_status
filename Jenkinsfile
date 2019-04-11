@@ -15,7 +15,7 @@ pipeline {
 			    echo "hello from sanity"
 			}
 		}
-		stage ('full regression') {
+		stage ('full regression2') {
 			steps {
 			    echo "hello from regression"
 			}
