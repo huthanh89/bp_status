@@ -3,7 +3,7 @@ pipeline {
 	stages {
         stage ('status check') {
 			steps {
-                githubNotify account: 'huthanh89', context: 'Final Test', credentialsId: 'huthanh89 Huynht123*',
+                githubNotify account: 'huthanh89', context: 'Final Test', credentialsId: 'huthanh89-Huynht123*',
                     description: 'This is an example', repo: 'bp_status', sha: '6770d88c8ccd189dd7280ee5c04b16585f73d50b', 
                     status: 'SUCCESS', targetUrl: 'http://www.cloudbees.com'
 			}
