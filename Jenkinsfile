@@ -1,18 +1,17 @@
+void setBuildStatus(String message, String state) {
+  step([
+      $class: "GitHubCommitStatusSetter",
+      reposSource: [$class: "ManuallyEnteredRepositorySource", url: "https://github.com/huthanh89/practice_jenkins.git"],
+      contextSource: [$class: "ManuallyEnteredCommitContextSource", context: "ci/jenkins/build-status"],
+      errorHandlers: [[$class: "ChangingBuildStatusErrorHandler", result: "UNSTABLE"]],
+      statusResultSource: [ $class: "ConditionalStatusResultSource", results: [[$class: "AnyBuildResult", message: message, state: state]] ]
+  ]);
+}
+
+
 pipeline {
 	agent any
 	stages {
-        stage ('status check') {
-			steps {
-                githubNotify account: 'huthanh89',
-                context: 'Final Test',
-                credentialsId: 'huthanh89/86b62b5860f904e66da5a205ddee107c6820b2fa',
-                description: 'This is an example',
-                repo: 'bp_status',
-                sha: '6770d88c8ccd189dd7280ee5c04b16585f73d50b',
-                status: 'SUCCESS',
-                targetUrl: 'http://www.cloudbees.com'
-			}
-		}
 		stage ('sanity') {
             when {
                 branch "featureA"
@@ -30,4 +29,12 @@ pipeline {
 			}
 		}
 	}
+    post {
+        success {
+            setBuildStatus("Build succeeded", "SUCCESS");
+        }
+        failure {
+            setBuildStatus("Build failed", "FAILURE");
+        }
+    }
 }
