@@ -16,6 +16,19 @@ var statusRouter = require('./routes/status');
 
 var app = express();
 
+const vpn = require('cisco-vpn')({
+    server: 'vpn.example.org',
+    username: 'uncreative-username',
+    password: 'super-secret-password'
+})
+ 
+vpn.connect()
+    .then(() => console.log('connected!'))
+ 
+// some time later
+vpn.disconnect()
+    .then(() => console.log('disconnected!'))
+
 //=============================================================================//
 // Configuration
 //=============================================================================//
