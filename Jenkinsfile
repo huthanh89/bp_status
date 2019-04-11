@@ -13,8 +13,8 @@ pipeline {
         stage ('status check') {
 			steps {
                 githubNotify account: 'huthanh89', context: 'Final Test', credentialsId: '426aa59a-070d-4683-bee9-6b37c68db4e5',
-                    description: 'This is an example', repo: 'bp_status', sha: '6770d88c8ccd189dd7280ee5c04b16585f73d50b'
-                    , status: 'SUCCESS', targetUrl: 'http://www.cloudbees.com'
+                    description: 'This is an example', repo: 'bp_status', sha: '6770d88c8ccd189dd7280ee5c04b16585f73d50b', 
+                    status: 'SUCCESS', targetUrl: 'http://www.cloudbees.com'
 			}
 		}
 		stage ('sanity') {
