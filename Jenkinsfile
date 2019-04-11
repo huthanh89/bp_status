@@ -17,7 +17,7 @@ pipeline {
 		}
 		stage ('full regression2') {
 			steps {
-			    echo "hello from regression"
+			    echo "hello from regression3"
 			}
 		}
 	}
