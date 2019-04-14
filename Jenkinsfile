@@ -7,7 +7,7 @@ pipeline {
                 sh "ls -lat"
 			}
 		}
-		stage ('full regression2') {
+		stage ('full regression2123') {
             when {
                 branch "master"
             }
