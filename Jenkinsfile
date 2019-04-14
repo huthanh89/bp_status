@@ -2,11 +2,9 @@ pipeline {
 	agent any
 	stages {
 		stage ('sanity') {
-            when {
-                branch "featureA"
-            }
 			steps {
-                echo "hello from sanity"
+                echo "hello from buiild"
+                sh "ls -lat"
 			}
 		}
 		stage ('full regression2') {
