@@ -3,8 +3,10 @@ pipeline {
 	stages {
 		stage ('build') {
 			steps {
-			    echo "hello from buiild"
-			    sh "ls -lat"
+			   	scmInfo = checkout scm
+				echo "scm : ${scmInfo}"
+				echo "${scmInfo.GIT_COMMIT}"
+				echo "hello from buiild"
 			}
 		}
 		stage ('sanity') {
